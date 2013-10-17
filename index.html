@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Throttle Example</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Throttle Example</h1>
+            <p>Simple sample usage of the <a href="http://underscorejs.org">Underscore.js</a> <a href="http://underscorejs.org/#throttle">throttle</a> function.</p>
+            <form role="form">
+                <div class="form-group">
+                    <input type="test" class="form-control" id="text_field" placeholder="Enter some text here... As fast as you can!">
+                </div>
+            </form>
+
+            <div class="panel panel-default">
+                <div id="response_panel" class="panel-body"></div>
+            </div>
+
+        </div>
+
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="http://underscorejs.org/underscore-min.js"></script>
+
+        <script type="text/javascript">
+
+            function reloadContent () {
+                var value = $("#text_field").val();
+                $("#response_panel").html(value);
+            }
+
+            var reloadContentEx = _.throttle(reloadContent, 2000);
+
+            $("#text_field").keyup(function () {
+                reloadContentEx();
+            });
+
+        </script>
+
+    </body>
+</html>
